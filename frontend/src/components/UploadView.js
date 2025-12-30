@@ -11,7 +11,7 @@ function UploadView() {
   const { settings } = useSettings();
 
   useEffect(() => {
-    // Check backend health on load
+    // Health check
     axios.get('http://127.0.0.1:5000/api/health')
       .then(() => setBackendStatus('connected'))
       .catch(() => setBackendStatus('disconnected'));
@@ -39,7 +39,7 @@ function UploadView() {
     setTranscription('');
 
     try {
-      // Use 127.0.0.1 instead of localhost to avoid IPv4/IPv6 resolution issues
+      // Fix localhost resolution
       const response = await axios.post('http://127.0.0.1:5000/api/transcribe', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

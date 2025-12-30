@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
     <div className="app-layout">
       <Sidebar />
       <main className="main-content">
-        {/* Mobile Theme Toggle (Floating) */}
+        {/* Mobile toggle */}
         <button 
           className="mobile-theme-toggle" 
           onClick={toggleTheme}

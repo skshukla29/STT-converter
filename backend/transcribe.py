@@ -6,10 +6,10 @@ import shutil
 import warnings
 import argparse
 
-# Suppress warnings
+# Quiet mode
 warnings.filterwarnings("ignore")
 
-# Set stdout to UTF-8 to avoid encoding errors on Windows
+# Fix Windows encoding
 sys.stdout.reconfigure(encoding='utf-8')
 
 def transcribe_audio(file_path, model_name="base", language=None):
@@ -19,7 +19,7 @@ def transcribe_audio(file_path, model_name="base", language=None):
 
     try:
         # Load the model
-        # fp16=False is important for CPU execution
+        # CPU fallback
         model = whisper.load_model(model_name)
         
         # Transcribe
@@ -29,7 +29,7 @@ def transcribe_audio(file_path, model_name="base", language=None):
 
         result = model.transcribe(file_path, **options)
         
-        # Return result as JSON
+        # Output JSON
         print(json.dumps(result))
     except Exception as e:
         error = {"error": str(e)}

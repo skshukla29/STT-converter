@@ -11,18 +11,18 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Health check endpoint
+// Health check
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Backend is running' });
 });
 
-// Configure multer storage to preserve file extensions
+// Multer config
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
-        // Generate unique filename with original extension
+        // Unique filename
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         cb(null, uniqueSuffix + path.extname(file.originalname));
     }
@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Ensure uploads directory exists
+// Create uploads dir if missing
 if (!fs.existsSync('uploads')){
     fs.mkdirSync('uploads');
 }
@@ -47,13 +47,12 @@ app.post('/api/transcribe', upload.single('audio'), (req, res) => {
     const model = req.body.model || 'base';
     const language = req.body.language || 'auto';
 
-    // Determine Python executable path (use venv if available)
+    // Python path setup
     const venvPythonFull = path.join(__dirname, 'venv', 'Scripts', 'python.exe');
-    // Use relative path to avoid issues with spaces in absolute paths on Windows
+    // Handle Windows paths with spaces
     const pythonCommand = fs.existsSync(venvPythonFull) ? '.\\venv\\Scripts\\python.exe' : 'python';
 
-    // Construct command string with proper quoting for Windows
-    // Add model and language arguments
+    // Quote command for shell execution
     const command = `"${pythonCommand}" transcribe.py "${absoluteFilePath}" --model "${model}" --language "${language}"`;
     
     console.log(`Executing: ${command}`);

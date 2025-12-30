@@ -1,46 +1,40 @@
-# Speech-to-Text Converter
+# STT Converter
 
-A professional full-stack application that converts speech to text using OpenAI's Whisper model.
+A local speech-to-text tool I built using OpenAI's Whisper. It handles audio uploads and live recording directly in the browser.
 
-## Features
+## What it does
+- **Transcribe**: Upload audio files or record straight from the mic.
+- **History**: Keeps track of past transcriptions so you don't lose them.
+- **Customizable**: Switch between Whisper models (tiny, base, small) depending on how much RAM you want to use.
+- **Dark Mode**: Because everything needs a dark mode.
 
-- **Upload Audio**: Support for various audio formats.
-- **Live Recording**: Record audio directly in the browser.
-- **Transcription History**: Save and manage your past transcriptions.
-- **Settings**: Configure Whisper model size and language.
-- **Theme Support**: Toggle between Light and Dark modes.
-- **Responsive Design**: Works on desktop and mobile.
+## Setup
 
-## Tech Stack
+You'll need Node.js, Python, and FFmpeg installed.
 
-- **Frontend**: React, Lucide React, CSS Variables
-- **Backend**: Node.js (Express), Python (Whisper, FFmpeg)
+### Backend
+The backend is a mix of Node (Express) and Python. Node handles the API and file management, while Python runs the heavy lifting with Whisper.
 
-## How to Run
-
-### Prerequisites
-- Node.js
-- Python 3.8+
-- FFmpeg installed and added to PATH
-
-### 1. Start the Backend
 ```bash
 cd backend
-# Create virtual env (first time only)
+# Setup python env
 python -m venv venv
-# Install Python dependencies
 .\venv\Scripts\pip install -r requirements.txt
-# Install Node dependencies
+
+# Install node deps
 npm install
-# Start server
+
+# Run it
 node server.js
 ```
 
-### 2. Start the Frontend
+### Frontend
+Standard React setup.
+
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
-The application will run at `http://localhost:3000`.
+Check it out at `http://localhost:3000`.
