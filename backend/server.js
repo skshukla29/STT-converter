@@ -197,6 +197,20 @@ app.post('/api/text-to-speech', express.json({ limit: '10mb' }), (req, res) => {
     });
 });
 
-app.listen(port, () => {
+const server = app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on port ${port}`);
+    console.log(`Health check available at http://localhost:${port}/api/health`);
 });
+
+server.on('error', (err) => {
+    console.error('Server error:', err);
+    if (err.code === 'EADDRINUSE') {
+        console.error(`Port ${port} is already in use. Please choose a different port.`);
+        process.exit(1);
+    }
+});
+
+// Keep the process alive
+server.setTimeout(0);
+server.keepAliveTimeout = 120000;
+server.headersTimeout = 120000;
