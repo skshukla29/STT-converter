@@ -9,7 +9,8 @@ import {
   ChevronLeft, 
   ChevronRight,
   Sun,
-  Moon
+  Moon,
+  Sparkles
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import './Sidebar.css';
@@ -26,6 +27,7 @@ const Sidebar = () => {
     { icon: <UploadCloud size={20} />, label: 'Upload Audio', path: '/upload' },
     { icon: <Mic size={20} />, label: 'Record Audio', path: '/record' },
     { icon: <History size={20} />, label: 'History', path: '/history' },
+    { icon: <Sparkles size={20} />, label: 'Summarize', path: '/summary' },
     { icon: <Settings size={20} />, label: 'Settings', path: '/settings' },
   ];
 

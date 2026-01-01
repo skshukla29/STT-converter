@@ -7,6 +7,7 @@ import UploadView from './components/UploadView';
 import RecordView from './components/RecordView';
 import HistoryView from './components/HistoryView';
 import SettingsView from './components/SettingsView';
+import SummaryView from './components/SummaryView';
 import './App.css';
 import { Sun, Moon } from 'lucide-react';
 
@@ -42,6 +43,7 @@ function App() {
               <Route path="/upload" element={<UploadView />} />
               <Route path="/record" element={<RecordView />} />
               <Route path="/history" element={<HistoryView />} />
+              <Route path="/summary" element={<SummaryView />} />
               <Route path="/settings" element={<SettingsView />} />
             </Routes>
           </Layout>

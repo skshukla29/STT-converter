@@ -56,6 +56,38 @@ const SettingsView = () => {
               <option value="hi">Hindi</option>
             </select>
           </div>
+
+          <div className="form-group">
+            <label htmlFor="openaiApiKey">OpenAI API Key (Optional)</label>
+            <input 
+              type="password"
+              id="openaiApiKey" 
+              name="openaiApiKey" 
+              value={settings.openaiApiKey || ''} 
+              onChange={handleChange}
+              className="settings-select"
+              placeholder="Leave empty to use backend configuration"
+              style={{ fontFamily: 'monospace' }}
+            />
+            <p className="help-text">Optional: Override the backend API key. Leave empty to use the key configured in backend/.env file.</p>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="llmModel">LLM Model</label>
+            <select 
+              id="llmModel" 
+              name="llmModel" 
+              value={settings.llmModel || 'gpt-4o-mini'} 
+              onChange={handleChange}
+              className="settings-select"
+            >
+              <option value="gpt-4o-mini">GPT-4o Mini (Fastest, Cost-Effective)</option>
+              <option value="gpt-4o">GPT-4o (Better Quality)</option>
+              <option value="gpt-4-turbo">GPT-4 Turbo</option>
+              <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+            </select>
+            <p className="help-text">Model used for text summarization and analysis.</p>
+          </div>
         </div>
         
         <div className="settings-footer">

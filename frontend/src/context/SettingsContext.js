@@ -9,7 +9,9 @@ export const SettingsProvider = ({ children }) => {
     const savedSettings = localStorage.getItem('settings');
     return savedSettings ? JSON.parse(savedSettings) : {
       model: 'base',
-      language: 'auto'
+      language: 'auto',
+      openaiApiKey: '',
+      llmModel: 'gpt-4o-mini'
     };
   });
 
