@@ -9,6 +9,15 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Log and keep process alive on unexpected errors
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught exception:', err);
+});
+
+process.on('unhandledRejection', (reason) => {
+    console.error('Unhandled rejection:', reason);
+});
+
 app.use(cors());
 app.use(express.json());
 
